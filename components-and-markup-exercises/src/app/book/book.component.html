@@ -1,0 +1,20 @@
+<div class="col-sm-10">
+  <div class="card text-white bg-primary">
+    <div class="card-body">
+      <button type="button" (click)="manageText(false)" class="btn btn-info">Show text</button>
+      <button type="button" (click)="manageText(true)" class="btn btn-info">Hide text</button>
+      <button type="button" (click)="managePicture(false)" class="btn btn-info">Show picture</button>
+      <button type="button" (click)="managePicture(true)" class="btn btn-info">Hide picture</button>
+      <h3>{{book.title}}</h3>
+      <blockquote class="card-blockquote">
+        <p *ngIf="!hideText">{{book.text}}</p>
+        <footer>Author:
+          <cite title="Author">{{book.author}}</cite>
+        </footer>
+        <img *ngIf="!hidePicture" src={{book.link}} />
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- (click)="show = !show">{{show ? 'hide' : 'show'}} -->
