@@ -20,6 +20,10 @@ export class HeroFormTemplateComponent implements OnInit {
     
   }
 
+  submitForm(formData){
+    console.log(formData);
+  }
+
   onSubmit() { 
     this.submitted = true; 
     console.log('new hero was created: ' + this.model);

@@ -1,14 +1,14 @@
 <div class="container">
 
   <h1>Template-Driven Form</h1>
-  <form #heroForm="ngForm">
+  <form #heroForm="ngForm" (ngSubmit)="submitForm(heroForm.value)">
     <div [hidden]="heroForm.submitted">
 
       <div class="form-group">
         <label for="name">Name</label>
         <input id="name" name="name" class="form-control" required minlength="3" juriName [(ngModel)]="model.name" #name="ngModel">
 
-        <div *ngIf="name.errors && (name.dirty || name.touched || heroForm.submitted)" class="alert alert-danger">
+        <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
 
           <div *ngIf="name.errors.juriName">
             Name must be Juri.
@@ -23,21 +23,29 @@
 
       </div>
 
-      <div class="form-group">
-        <label for="alterEgo">Alter Ego</label>
-        <input id="alterEgo" class="form-control" name="alterEgo" [(ngModel)]="model.alterEgo">
-      </div>
+      
 
-      <div class="form-group">
-        <label for="power">Hero Power</label>
-        <select id="power" name="power" class="form-control" required [(ngModel)]="model.power" #power="ngModel">
-          <option *ngFor="let p of powers" [value]="p">{{p}}</option>
-        </select>
+      <div ngModelGroup="adittionalData">
 
-        <div *ngIf="power.errors && power.touched" class="alert alert-danger">
-          <div *ngIf="power.errors.required">Power is required.</div>
+        <div class="form-group">
+          <label for="alterEgo">Alter Ego</label>
+          <input id="alterEgo" class="form-control" name="alterEgo" [(ngModel)]="model.alterEgo">
         </div>
+
+        <div class="form-group">
+          <label for="power">Hero Power</label>
+          <select id="power" name="power" class="form-control" required [(ngModel)]="model.power" #power="ngModel">
+            <option *ngFor="let p of powers" [value]="p">{{p}}</option>
+          </select>
+  
+          <div *ngIf="power.errors && power.touched" class="alert alert-danger">
+            <div *ngIf="power.errors.required">Power is required.</div>
+          </div>
+        </div>
+
       </div>
+
+      
 
       <button type="submit" class="btn btn-default" [disabled]="heroForm.invalid">Submit</button>
       <button type="button" class="btn btn-default" (click)="heroForm.resetForm({})">Reset</button>
