@@ -9,13 +9,21 @@ import {User} from './../../models/User';
 })
 export class RegisterComponent implements OnInit {
   user: User;
-  
+  public submitted: boolean = false;
+
+
   constructor() { 
 
   }
 
   ngOnInit() {
-    this.user = new User();
+    this.user = {
+      username: '',
+      password: '',
+      confirmPassword: '',
+      phone: '',
+      email: ''
+    };
   }
 
   submitForm(dataObj){

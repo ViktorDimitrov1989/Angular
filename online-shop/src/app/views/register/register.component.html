@@ -4,40 +4,56 @@
       <legend class="text-center">Register page</legend>
       <div class="form-group">
         <label>Username</label>
-        <input #name="ngModel" type="text" class="form-control" name="username" id="username" [(ngModel)]="user.username" placeholder="Enter username">
+        <input #username="ngModel" [(ngModel)]="user.username" type="text" class="form-control" name="username" required minlength="5"
+          maxlength="8" placeholder="Enter username">
+        <div [hidden]="username.valid || username.pristine && username.untouched" class="alert alert-danger">
+          <div [hidden]="!username.hasError('required')">Username is required</div>
+          <div [hidden]="!username.hasError('minlength')">Username's length must be at least 5 symbols</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input #em="ngModel" type="email" class="form-control" name="email" [(ngModel)]="user.email" placeholder="Enter email">
+        <input #email="ngModel" [(ngModel)]="user.email" type="email" class="form-control" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          required placeholder="Enter email">
+        <div [hidden]="email.valid || email.pristine && email.untouched" class="alert alert-danger">
+          <div [hidden]="!email.hasError('required')">Email is required</div>
+          <div [hidden]="!email.hasError('pattern')">Email format should be
+            <small>
+              <b>joe@abc.com</b>
+            </small>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input #pwd="ngModel" type="password" class="form-control" name="password" [(ngModel)]="user.password" placeholder="Password">
+        <input [(ngModel)]="user.password" #password="ngModel" type="password" class="form-control" name="password" required validateEqual="confirmPassword"
+          reverse="true" placeholder="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$" minlength="5">
+        <div [hidden]="password.valid || password.pristine && password.untouched" class="alert alert-danger">
+          <div [hidden]="!password.hasError('required')">Password is required</div>
+          <div [hidden]="!password.hasError('minlength')">Password must be atleast 5 characters long</div>
+          <div [hidden]="!password.hasError('pattern')">Password must contain one digit and one letter</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="repeatPassword">Repeat password</label>
-        <input #repeatPwd="ngModel" type="password" class="form-control" name="repeatPassword" [(ngModel)]="repeatPassword" placeholder="Repeat password">
+        <input [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" required validateEqual="password" type="password" class="form-control"
+          name="confirmPassword" placeholder="Confirm password">
+        <div [hidden]="confirmPassword.valid || (confirmPassword.pristine && !registerForm.submitted)" class="alert alert-danger">
+          Password mismatch
+        </div>
       </div>
-      <fieldset class="form-group">
-        <legend>Gender</legend>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input #gndr="ngModel" type="radio" class="form-check-input" name="gender" [(ngModel)]="user.gender" name="gender" value="Male"> Male
-          </label>
+      <div class="form-group">
+        <label for="name">Phone Number</label>
+        <input type="text" class="form-control" id="phone" required [(ngModel)]="user.phone" name="phone" pattern="[0-9]*" minlength="10"
+          maxlength="10" #phone="ngModel" placeholder="Enter Your phone">
+        <div [hidden]="phone.valid || phone.pristine && phone.untouched" class="alert alert-danger">
+          <div [hidden]="!phone.hasError('minlength')">Phone number should be 10 digits</div>
+          <div [hidden]="!phone.hasError('required')">Phone number is required</div>
+          <div [hidden]="!phone.hasError('pattern')">Phone number should be only numbers</div>
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input #gndr="ngModel" type="radio" class="form-check-input" name="gender" [(ngModel)]="user.gender" name="gender" value="Female"> Female
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input #gndr="ngModel" type="radio" class="form-check-input" name="gender" [(ngModel)]="user.gender" name="gender" value="Other"> Other
-          </label>
-        </div>
-      </fieldset>
+      </div>
       <div class="text-center">
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
       </div>
     </div>
   </fieldset>

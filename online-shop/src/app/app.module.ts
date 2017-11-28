@@ -8,11 +8,15 @@ import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
 import { AppRoutingModule } from './routing/app-routing';
 
+//Directives
+import {EqualValidator} from './validators/equal-validator-directive';
+
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
