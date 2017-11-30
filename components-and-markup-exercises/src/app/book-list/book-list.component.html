@@ -1,6 +1,3 @@
 <div class="row">
-  <app-book *ngFor="let book of data" 
-  [book]="book" 
-  (showHideText)="showHideText($event)" 
-  (showHidePicture)="showHidePicture($event)"></app-book>
+  <app-book *ngFor="let book of data" [book]="book" (removeBookById)="removeBookById($event)" ></app-book>
 </div>

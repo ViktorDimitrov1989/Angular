@@ -7,25 +7,34 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class BookComponent implements OnInit {
   @Input() book: Object;
-  @Output() showHideText = new EventEmitter<boolean>();
-  @Output() showHidePicture = new EventEmitter<boolean>();
+  @Output() removeBookById : EventEmitter<number> = new EventEmitter();
 
-  hideText = true;
-  hidePicture = true;
+
+  public isTextHidden: boolean;
+  public isPictureHiden: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.isTextHidden = true;
+    this.isPictureHiden = true;
   }
 
-  manageText(showHide: boolean){
-    this.showHideText.emit(showHide);
-    this.hideText = showHide;
+  //emit event when delete book from the list
+
+  manageText(){
+    //this.showHideText.emit(showHide);
+    this.isTextHidden = !this.isTextHidden;
   }
 
-  managePicture(showHide: boolean){
-    this.showHidePicture.emit(showHide);
-    this.hidePicture = showHide;
+  managePicture(){
+    //this.showHidePicture.emit(showHide);
+    this.isPictureHiden = !this.isPictureHiden;
+  }
+
+  removeBook(id: number){
+    //console.log(id);
+    this.removeBookById.emit(id);
   }
 
 }

@@ -16,11 +16,13 @@ export class BookListComponent implements OnInit {
     this.data = books;
   }
 
-  showHideText(showHideText: boolean): void {
-    console.log(showHideText);
+  removeBookById(id: number) {
+    if(this.data.length > 1){
+      this.data.splice(id, 1);
+    }else{
+      this.data.splice(0, 1);
+    }
+    
   }
 
-  showHidePicture(showHidePicture: boolean): void {
-    console.log(showHidePicture);
-  }
 }

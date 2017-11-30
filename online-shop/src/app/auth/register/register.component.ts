@@ -1,18 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {User} from './../models/User';
 import {UserService} from './../shared/user.service';
+import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  providers: [UserService]
+  styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
+
   user: User;
   public submitted: boolean = false;
 
+  private sub: Subscription;
+
   constructor(private userService: UserService) { 
+    
   }
 
   ngOnInit() {
@@ -23,12 +29,23 @@ export class RegisterComponent implements OnInit {
       phone: '',
       email: ''
     };
+
+    this.sub = this.userService.user.subscribe((resp:any) => {
+      let username: string = resp.username;
+      let authToken: string = resp._kmd.authtoken;
+      localStorage.setItem('authToken', authToken);
+      localStorage.setItem('username', resp.username);
+    })
   }
 
   submitForm(dataObj){
-    this.userService.registerUser(dataObj).subscribe(resp => {
-      console.log(resp);
-    })
+    this.userService.registerUser(dataObj);
+  }
+
+  ngOnDestroy(): void {
+    if(this.sub){
+      this.sub.unsubscribe();
+    }
   }
 
 }
