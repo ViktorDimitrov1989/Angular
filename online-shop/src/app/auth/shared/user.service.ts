@@ -31,6 +31,7 @@ export class UserService{
         user['role'] = 'user';
 
         this.http.post(`${this.baseUrl}/user/${this.appKey}`, JSON.stringify(user), httpOptions).subscribe(user => {
+            //next send "user" to the subscribers
             this.user.next(user)
         });
     }
