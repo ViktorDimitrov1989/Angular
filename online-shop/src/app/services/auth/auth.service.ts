@@ -12,6 +12,8 @@ import {APP_KEY, APP_SECRET, BASE_URL} from './../constants';
 export class AuthService {
 
   public user: Subject<any> = new Subject();
+  public redirectUrl: string;
+
 
   constructor(
     private http: HttpClient

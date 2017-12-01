@@ -28,6 +28,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 //Validators
 import { EqualValidator } from './services/user/equal-validator-directive';
 
+//path guards
+
+
 @NgModule({
   declarations: [
     AppComponent,
