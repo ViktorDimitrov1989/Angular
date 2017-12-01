@@ -15,6 +15,8 @@ export class PokeTableComponent implements OnInit, OnDestroy {
 
   targetName = new Subject<any>();
 
+  focusedPokemon
+
   constructor(private pokeSeartchService: PokeSearchService) { 
     this.pokeSeartchService.debouncePokemons(this.targetName).subscribe(e => {
 

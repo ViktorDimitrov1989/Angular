@@ -1,5 +1,6 @@
 
 import { Component, Input, OnInit } from '@angular/core';
+import { FocusService } from '../../services/focus/focus.service';
 
 @Component({
   selector: 'app-table-element',
@@ -10,9 +11,13 @@ export class TableElementComponent implements OnInit {
 
   @Input() pokemon;
 
-  constructor() { }
+  constructor(private focusService: FocusService) { }
 
   ngOnInit() {
+  }
+
+  select(data){
+    this.focusService.elevatePokemonData(data);
   }
 
 }

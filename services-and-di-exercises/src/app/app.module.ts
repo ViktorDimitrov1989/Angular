@@ -12,6 +12,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { PokeTableComponent } from './components/poke-table/poke-table.component';
 import { PokeSearchService } from './services/poke-search.service';
 import { TableElementComponent } from './components/table-element/table-element.component';
+import { FocusedComponent } from './components/focused/focused.component';
+import { FocusService } from './services/focus/focus.service';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { TableElementComponent } from './components/table-element/table-element.
     MainComponent,
     AuthComponent,
     PokeTableComponent,
-    TableElementComponent
+    TableElementComponent,
+    FocusedComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { TableElementComponent } from './components/table-element/table-element.
   providers: [
     AuthService,
     PokeSearchService,
+    FocusService,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,
