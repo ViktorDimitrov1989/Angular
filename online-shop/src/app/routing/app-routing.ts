@@ -1,9 +1,11 @@
+import { AuthGuard } from './path-guards/auth.guard';
 import { RegisterComponent } from '../components/register/register.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import {HomePageComponent} from './../components/home-page/home-page.component';
 import { LoginComponent } from '../components/login/login.component';
+import { NotAuthGuard } from './path-guards/not-auth.guard';
 
 const routes: Routes = [
   {
@@ -14,12 +16,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    pathMatch: 'full'
+    canActivate:[NotAuthGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
-    pathMatch: 'full'
+    canActivate:[NotAuthGuard]
   }
 
 ]

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { User } from '../../models/User';
 import { Injectable } from '@angular/core';
@@ -16,7 +17,8 @@ export class AuthService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   registerUser(user: User) {
@@ -26,14 +28,13 @@ export class AuthService {
 
     this.http.post(`${BASE_URL}/user/${APP_KEY}`, JSON.stringify(user)).subscribe(user => {
       //next send "user" to the subscribers
+      this.router.navigateByUrl('/');
       this.user.next(user)
     });
   }
 
   public isAuthenticated(): boolean {
-
     const token = localStorage.getItem('authToken');
-
     return token !== null;
   }
 

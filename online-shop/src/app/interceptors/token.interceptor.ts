@@ -31,7 +31,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
             return next.handle(request).do((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    this.toastr.success('Success!');
+                    //this.toastr.success('Success!');
                     console.log(event);
                 }
             }, (err: any) => {
@@ -39,7 +39,7 @@ export class TokenInterceptor implements HttpInterceptor {
                     if (err.status === 401) {
                         // redirect to the login route
                         // or show a modal
-                        this.toastr.error('Error!');
+                        //this.toastr.error('Error!');
                         console.log(event);
                     }
                 }
@@ -54,7 +54,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
         return next.handle(request).do((event: HttpEvent<any>) => {
             if (event instanceof HttpResponse) {
-                this.toastr.success('Success!');
+                //this.toastr.success('Success!');
                 console.log(event);
             }
         }, (err: any) => {
@@ -62,7 +62,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 if (err.status === 401) {
                     // redirect to the login route
                     // or show a modal
-                    this.toastr.error('Error!');
+                    //this.toastr.error('Error!');
                     console.log(event);
                 }
             }

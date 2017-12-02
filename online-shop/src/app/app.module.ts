@@ -27,6 +27,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 
 //Validators
 import { EqualValidator } from './services/user/equal-validator-directive';
+import { AuthGuard } from './routing/path-guards/auth.guard';
+import { NotAuthGuard } from './routing/path-guards/not-auth.guard';
 
 //path guards
 
@@ -53,6 +55,8 @@ import { EqualValidator } from './services/user/equal-validator-directive';
   providers: [
     UserService,
     AuthService,
+    AuthGuard,
+    NotAuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

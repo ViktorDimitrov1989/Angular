@@ -14,10 +14,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public username: string;
   
   private sub$: Subscription;
+  private isAuthenticated: boolean;
 
   constructor(private authService: AuthService) { 
+  
     this.sub$ = this.authService.user.subscribe(user => {
       this.username = user.username;
+      this.isAuthenticated = user !== null;
     })
   }
 
