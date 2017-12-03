@@ -1,3 +1,4 @@
+import { Product } from '../../models/Product';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from '../../models/User';
 import { Subscription } from 'rxjs/Rx';
@@ -7,7 +8,7 @@ import { UserService } from '../../services/user/user.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-register', 
+  selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -25,14 +26,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
       password: '',
       confirmPassword: '',
       phone: '',
-      email: ''
+      email: '',
+      products: []
     };
 
     this.sub$ = this.authService.user.subscribe((resp: any) => {
-      let username: string = resp.username;
-      let authToken: string = resp._kmd.authtoken;
-      localStorage.setItem('authToken', authToken);
-      localStorage.setItem('username', resp.username);
+      if (resp !== undefined) {
+        let username: string = resp.username;
+        let authToken: string = resp._kmd.authtoken;
+        localStorage.setItem('authToken', authToken);
+        localStorage.setItem('username', resp.username);
+      }
+
     })
 
   }
@@ -40,8 +45,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  submitForm(dataObj) {
-    this.authService.registerUser(dataObj);
+  submitForm(user) {
+    delete user['confirmPassword'];
+    user['role'] = 'user';
+    user['products'] = [];
+
+    this.authService.registerUser(user);
   }
 
   ngOnDestroy(): void {

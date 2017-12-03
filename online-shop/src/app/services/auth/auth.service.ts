@@ -22,14 +22,27 @@ export class AuthService {
   ) { }
 
   registerUser(user: User) {
-
-    delete user['confirmPassword'];
-    user['role'] = 'user';
-
     this.http.post(`${BASE_URL}/user/${APP_KEY}`, JSON.stringify(user)).subscribe(user => {
       //next send "user" to the subscribers
       this.router.navigateByUrl('/');
-      this.user.next(user)
+      this.user.next(user);
+    });
+  }
+
+  loginUser(loginUser){
+    this.http.post(`${BASE_URL}/user/${APP_KEY}/login`, JSON.stringify(loginUser)).subscribe(user => {
+      //next send "user" to the subscribers
+      this.router.navigateByUrl('/');
+      this.user.next(user);
+    });
+  }
+
+  logoutUser(){
+    this.http.post(`${BASE_URL}/user/${APP_KEY}/_logout`, {}).subscribe(user => {
+      //next send "user" to the subscribers
+      localStorage.clear();
+      console.log(user);
+      this.user.next(user);
     });
   }
 

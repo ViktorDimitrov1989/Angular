@@ -1,3 +1,19 @@
-<p>
-  login works!
-</p>
+<form #loginForm="ngForm" (ngSubmit)="submitForm(loginForm.value)">
+  <fieldset>
+    <div class="container">
+      <legend class="text-center">Login page</legend>
+      <div class="form-group">
+        <label>Username</label>
+        <input #username="ngModel" [(ngModel)]="loginUser.username" type="text" class="form-control" name="username" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input [(ngModel)]="loginUser.password" #password="ngModel" type="password" class="form-control" name="password" reverse="true"
+          placeholder="Password">
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
