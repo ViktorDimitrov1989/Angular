@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService) { 
   
     this.sub$ = this.authService.user.subscribe(user => {
-      console.log(user)
       this.isAuthenticated = user !== null;
 
       if(this.isAuthenticated){
@@ -34,6 +33,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isAuthenticated = this.authService.isAuthenticated();
+    this.isAdmin = this.authService.isAdministrator();
+    this.username = this.authService.getUsername();
   }
 
   logout(){

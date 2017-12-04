@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthService {
 
   public user: Subject<any> = new Subject();
-  public redirectUrl: string;
+  //public redirectUrl: string;
 
 
   constructor(
@@ -21,12 +21,6 @@ export class AuthService {
     private router: Router,
     private toastr: ToastrService
   ) { }
-
-  // .map(response => {
-  //   if (response.status === 200) this.toastsSerivce.success(this.translateService.instant('lbl_users_member_created'));
-  //   return response;
-  // })
-  // .catch((error:any) => Observable.throw(this.toastsSerivce.error(this.translateService.instant('lbl_users_member_create_failed'))));
 
   registerUser(user: User) {
     this.http.post(`${BASE_URL}/user/${APP_KEY}`, JSON.stringify(user)).subscribe(user => {
@@ -75,6 +69,10 @@ export class AuthService {
 
   public getToken(): string {
     return localStorage.getItem('authToken');
+  }
+
+  public getUsername(): string {
+    return localStorage.getItem('username');
   }
 
   public isAdministrator(): boolean{

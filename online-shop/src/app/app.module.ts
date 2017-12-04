@@ -22,22 +22,22 @@ import { UserService } from './services/user/user.service';
 
 //Interceptors
 import { TokenInterceptor } from './interceptors/token.interceptor';
-
-//Validators
-import { EqualValidator } from './services/user/equal-validator-directive';
-import { AuthGuard } from './routing/path-guards/auth.guard';
-import { NotAuthGuard } from './routing/path-guards/not-auth.guard';
+import { ProductService } from './services/product/product.service';
 
 //path guards
+import { AuthGuard } from './routing/path-guards/auth.guard';
+import { NotAuthGuard } from './routing/path-guards/not-auth.guard';
+import { ProductsListComponent } from './components/products-list/products-list.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EqualValidator,
     HeaderComponent,
     HomePageComponent,
-    MainComponent
+    MainComponent,
+    ProductsListComponent
   ],
   imports: [
     AuthModule,
@@ -49,6 +49,7 @@ import { NotAuthGuard } from './routing/path-guards/not-auth.guard';
   ],
   providers: [
     UserService,
+    ProductService,
     AuthGuard,
     NotAuthGuard,
     {

@@ -1,3 +1,4 @@
+import { ProductsListComponent } from '../components/products-list/products-list.component';
 import { AuthGuard } from './path-guards/auth.guard';
 import { RegisterComponent } from '../components/register/register.component';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,11 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     canActivate:[NotAuthGuard]
+  },
+  {
+    path: 'products',
+    component: ProductsListComponent,
+    canActivate:[AuthGuard]
   }
 
 ]

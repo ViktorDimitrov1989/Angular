@@ -3,6 +3,6 @@ export interface Product {
     type: string;
     description: string;
     price: string;
-    expDate: Date;
+    addedOn: Date;
     picture: string
 }
