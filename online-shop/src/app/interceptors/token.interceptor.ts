@@ -6,15 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import { UserService } from '../services/user/user.service';
 import { Injector } from '@angular/core';
 import { APP_KEY, APP_SECRET } from './../services/constants'
-import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
     private auth: AuthService;
 
     constructor(
-        private injector: Injector,
-        private toastr: ToastrService
+        private injector: Injector
     ) {
 
     }
@@ -31,7 +30,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
             return next.handle(request).do((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    //this.toastr.success('Success!');
                     console.log(event);
                 }
             }, (err: any) => {
@@ -39,7 +37,6 @@ export class TokenInterceptor implements HttpInterceptor {
                     if (err.status === 401) {
                         // redirect to the login route
                         // or show a modal
-                        //this.toastr.error('Error!');
                         console.log(event);
                     }
                 }
@@ -54,7 +51,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
         return next.handle(request).do((event: HttpEvent<any>) => {
             if (event instanceof HttpResponse) {
-                //this.toastr.success('Success!');
                 console.log(event);
             }
         }, (err: any) => {
@@ -62,7 +58,6 @@ export class TokenInterceptor implements HttpInterceptor {
                 if (err.status === 401) {
                     // redirect to the login route
                     // or show a modal
-                    //this.toastr.error('Error!');
                     console.log(event);
                 }
             }

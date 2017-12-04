@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         let authToken: string = resp._kmd.authtoken;
         localStorage.setItem('authToken', authToken);
         localStorage.setItem('username', resp.username);
+        localStorage.setItem('userRole', resp.role);
       }
 
     })

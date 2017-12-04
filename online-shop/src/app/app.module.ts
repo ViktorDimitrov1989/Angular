@@ -1,5 +1,5 @@
 //Modules
-import { AuthService } from './services/auth/auth.service';
+import { AuthModule } from './modules/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -14,10 +14,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import {HomePageComponent} from './components/home-page/home-page.component';
 import { AppRoutingModule } from './routing/app-routing';
-import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
-import { RegisterComponent } from './components/register/register.component';
 
 //Services
 import { UserService } from './services/user/user.service';
@@ -36,25 +34,21 @@ import { NotAuthGuard } from './routing/path-guards/not-auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent,
     EqualValidator,
     HeaderComponent,
     HomePageComponent,
     MainComponent
   ],
   imports: [
+    AuthModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
   providers: [
     UserService,
-    AuthService,
     AuthGuard,
     NotAuthGuard,
     {

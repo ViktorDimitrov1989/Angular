@@ -15,6 +15,9 @@
       <li class="nav-item" [hidden]="!isAuthenticated">
         <a class="nav-link" href="/shoppingCart">Shopping Cart</a>
       </li>
+      <li class="nav-item" [hidden]="!isAdmin || !isAuthenticated">
+        <a class="nav-link" href="/manageProducts">Manage products</a>
+      </li>
       <li class="nav-item" [hidden]="isAuthenticated">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>

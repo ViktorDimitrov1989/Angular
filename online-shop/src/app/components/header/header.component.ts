@@ -15,15 +15,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   
   private sub$: Subscription;
   private isAuthenticated: boolean;
+  private isAdmin: boolean;
 
   constructor(private authService: AuthService) { 
   
     this.sub$ = this.authService.user.subscribe(user => {
-      //console.log(user)
+      console.log(user)
       this.isAuthenticated = user !== null;
 
       if(this.isAuthenticated){
         this.username = user.username;
+        this.isAdmin = user.role === 'admin';
       }else{
         this.username = null;
       }
