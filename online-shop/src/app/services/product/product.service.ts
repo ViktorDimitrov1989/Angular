@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class ProductService {
 
   public products: Subject<any> = new Subject();
+  public focusedProduct: Subject<any> = new Subject();
 
   constructor(
     private http: HttpClient,
@@ -17,12 +18,21 @@ export class ProductService {
 
   getProducts(){
     this.http.get(`${BASE_URL}/appdata/${APP_KEY}/products`).subscribe(products => {
-      console.log(products);
       this.products.next(products);
     },
       err => {
         console.log(err);
       });
   }
+
+  getProductById(productId: string){
+    this.http.get(`${BASE_URL}/appdata/${APP_KEY}/products/${productId}`).subscribe(product => {
+      this.focusedProduct.next(product);
+    },
+      err => {
+        this.toastr.error("Product not found.")
+      });
+  }
+
 
 }

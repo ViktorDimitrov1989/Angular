@@ -1,0 +1,26 @@
+<div *ngIf="product" class="container">
+  <div class="card mb-3">
+    <h3 class="card-header">{{product.type}} {{product.brand}}</h3>
+    <div class="card-body">
+      <h5 class="card-title">{{product.description}}</h5>
+      <h6 class="card-subtitle text-muted">added on: {{product.addedOn | date}}</h6>
+    </div>
+
+    <img class="img-responsive img-center" style="height: 650px; width: 75%;" src={{product.picture}} alt="Card image">
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Fit: {{product.fit}}</li>
+      <li class="list-group-item">Price: {{product.price | number : '1.2-2'}}</li>
+      <li class="list-group-item">
+          <label for="sel1">Size:</label>
+          <select class="form-control" id="sel1">
+            <option *ngFor="let size of product.sizes" value={{size}}>{{size}}</option>
+          </select>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+
+</div>

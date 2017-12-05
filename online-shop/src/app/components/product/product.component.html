@@ -1,0 +1,26 @@
+<div class="col-lg-3">
+  <div class="card border-dark mb-3" style="max-width: 20rem;">
+    <div class="container">
+      <span class="badge badge-pill badge-primary">{{product.status}}</span>
+      <span class="badge badge-pill badge-success">{{product.quality}} quality</span>
+      <span class="badge badge-pill badge-light">{{product.fit}} fit</span>
+    </div>
+
+    <div class="card-body text-dark">
+      <h4 class="card-title">{{product.type}}</h4>
+      <img src={{product.picture}} class="img-thumbnail" alt="Cinque Terre" width="270" height="236">
+      <div>
+        <label>Brand: {{product.brand}}</label>
+      </div>
+      <div class="btn-group btn-group-sm">
+        <!-- <div>
+          <button (click)="viewDetails(product._id)" type="button" class="btn btn-success my-2 my-sm-0">Order</button>
+        </div> -->
+        <div>
+          <button (click)="viewDetails(product._id)" type="button" class="btn btn-info my-2 my-sm-0">Details</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -28,6 +28,8 @@ import { ProductService } from './services/product/product.service';
 import { AuthGuard } from './routing/path-guards/auth.guard';
 import { NotAuthGuard } from './routing/path-guards/not-auth.guard';
 import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 
 
@@ -37,7 +39,9 @@ import { ProductsListComponent } from './components/products-list/products-list.
     HeaderComponent,
     HomePageComponent,
     MainComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    ProductComponent,
+    ProductDetailsComponent
   ],
   imports: [
     AuthModule,
