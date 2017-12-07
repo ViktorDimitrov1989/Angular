@@ -30,6 +30,7 @@ import { NotAuthGuard } from './routing/path-guards/not-auth.guard';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ProductsCartComponent } from './components/products-cart/products-cart.component';
 
 
 
@@ -41,7 +42,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     MainComponent,
     ProductsListComponent,
     ProductComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ProductsCartComponent
   ],
   imports: [
     AuthModule,
@@ -49,7 +51,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FormsModule
   ],
   providers: [
     UserService,

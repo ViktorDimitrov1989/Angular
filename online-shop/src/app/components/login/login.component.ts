@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       if (resp != undefined) {
         let username: string = resp.username;
         let authToken: string = resp._kmd.authtoken;
+        localStorage.setItem('userId', resp._id);
         localStorage.setItem('authToken', authToken);
         localStorage.setItem('username', resp.username);
         localStorage.setItem('userRole', resp.role);

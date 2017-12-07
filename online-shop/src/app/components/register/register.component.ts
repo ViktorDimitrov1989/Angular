@@ -1,6 +1,6 @@
 import { Product } from '../../models/Product';
 import { AuthService } from '../../services/auth/auth.service';
-import { User } from '../../models/User';
+import { RegisterUser } from '../../models/User';
 import { Subscription } from 'rxjs/Rx';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-  public user: User;
+  public user: RegisterUser;
   public submitted: boolean = false;
   public sub$: Subscription;
 
@@ -24,10 +24,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.user = {
       username: '',
       password: '',
-      confirmPassword: '',
       phone: '',
       email: '',
-      products: []
+      products: [],
+      role: 'user',
+      confirmPassword: ''
     };
 
     this.sub$ = this.authService.user.subscribe((resp: any) => {
@@ -37,6 +38,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         localStorage.setItem('authToken', authToken);
         localStorage.setItem('username', resp.username);
         localStorage.setItem('userRole', resp.role);
+        localStorage.setItem('userId', resp._id);
       }
 
     })
@@ -47,11 +49,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   submitForm(user) {
-    delete user['confirmPassword'];
-    user['role'] = 'user';
-    user['products'] = [];
-
-    this.authService.registerUser(user);
+    
+    // user['role'] = 'user';
+    // user['products'] = [];
+    this.authService.registerUser(this.user);
   }
 
   ngOnDestroy(): void {

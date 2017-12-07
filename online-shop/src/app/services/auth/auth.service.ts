@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { User } from '../../models/User';
+import { RegisterUser } from '../../models/User';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs';
@@ -22,9 +22,9 @@ export class AuthService {
     private toastr: ToastrService
   ) { }
 
-  registerUser(user: User) {
+  registerUser(user: RegisterUser) {
+
     this.http.post(`${BASE_URL}/user/${APP_KEY}`, JSON.stringify(user)).subscribe(user => {
-      //next send "user" to the subscribers
       this.router.navigateByUrl('/');
       this.user.next(user);
     },
@@ -38,7 +38,6 @@ export class AuthService {
   loginUser(loginUser) {
     this.http.post(`${BASE_URL}/user/${APP_KEY}/login`, JSON.stringify(loginUser))
       .subscribe((user) => {
-        //next send "user" to the subscribers
         this.toastr.success('Login success');
         this.router.navigateByUrl('/');
         this.user.next(user);
@@ -52,7 +51,6 @@ export class AuthService {
 
   logoutUser() {
     this.http.post(`${BASE_URL}/user/${APP_KEY}/_logout`, JSON.stringify({})).subscribe(user => {
-      //next send "user" to the subscribers
       localStorage.clear();
       this.toastr.success('Logout success.');
       this.user.next(user);

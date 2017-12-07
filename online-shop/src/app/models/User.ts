@@ -1,9 +1,10 @@
 import { Product } from './Product';
-export interface User {
+export interface RegisterUser {
     username: string;
     password: string;
     confirmPassword: string;
     phone: string;
     email: string;
-    products: Product[];
+    products: Object[];
+    role: string;
 }

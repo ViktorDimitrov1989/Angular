@@ -20,7 +20,7 @@ export class NotAuthGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate[''];
+    this.router.navigateByUrl('');
     this.toastr.warning('You are already logged in!');
     return false;
   }
