@@ -1,0 +1,56 @@
+<div class="container">
+  <form (ngSubmit)="submit(register)" [formGroup]='register'>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
+        <div *ngIf="register.get('email').errors && register.get('email').touched">Error</div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="name">Name</label>
+        <input formControlName="name" type="email" class="form-control" id="name" placeholder="Name">
+        <div *ngIf="register.get('name').errors && register.get('name').touched">Error</div>
+      </div>
+      <div formGroupName="auth" class="col-md-12">
+        <div class="form-group col-md-6">
+          <label for="password">Password</label>
+          <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
+          <div *ngIf="register.get('auth').get('password').errors">Error</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="confirmPassword">Confirm Password</label>
+          <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Password">
+          <div *ngIf="register.get('auth').get('confirmPassword').errors">Error</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input formControlName="adress" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      <div *ngIf="register.get('adress').errors">Error</div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input formControlName="city" type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">Country</label>
+        <input formControlName="country" type="text" class="form-control" id="country">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input formControlName="zipCode" type="text" class="form-control" id="inputZip">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox"> Check me out
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+</div>
