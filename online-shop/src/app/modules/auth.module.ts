@@ -1,5 +1,5 @@
 //Modules
-import { AuthService } from '../services/auth/auth.service';
+//import { AuthService } from '../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,8 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EqualValidator } from '../services/user/equal-validator-directive';
 
 //Components
-import { RegisterComponent } from '../components/register/register.component';
-import { LoginComponent } from '../components/login/login.component';
+import { RegisterComponent } from '../components/auth/register/register.component';
+import { LoginComponent } from '../components/auth/login/login.component';
 
 @NgModule({
     imports: [
@@ -22,7 +22,6 @@ import { LoginComponent } from '../components/login/login.component';
         RegisterComponent
     ],
     providers: [
-        AuthService
     ],
     exports: [
         LoginComponent,

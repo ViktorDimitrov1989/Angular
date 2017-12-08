@@ -1,14 +1,14 @@
-import { ProductsCartComponent } from '../components/products-cart/products-cart.component';
-import { ProductsListComponent } from '../components/products-list/products-list.component';
+import { ProductsCartComponent } from '../components/products/products-cart/products-cart.component';
+import { ProductsListComponent } from '../components/products/products-list/products-list.component';
 import { AuthGuard } from './path-guards/auth.guard';
-import { RegisterComponent } from '../components/register/register.component';
+import { RegisterComponent } from '../components/auth/register/register.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomePageComponent } from './../components/home-page/home-page.component';
-import { LoginComponent } from '../components/login/login.component';
+import { HomePageComponent } from './../components/home/home-page/home-page.component';
+import { LoginComponent } from '../components/auth/login/login.component';
 import { NotAuthGuard } from './path-guards/not-auth.guard';
-import { ProductDetailsComponent } from '../components/product-details/product-details.component';
+import { ProductDetailsComponent } from '../components/products/product-details/product-details.component';
 
 const routes: Routes = [
   {
