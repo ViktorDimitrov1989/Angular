@@ -3,13 +3,14 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { APP_KEY, APP_SECRET, BASE_URL } from './../constants';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ProductService {
 
   public products: Subject<any> = new Subject();
   public focusedProduct: Subject<any> = new Subject();
+  public adverts: Subject<any> = new Subject();
 
   constructor(
     private http: HttpClient,
@@ -53,5 +54,15 @@ export class ProductService {
         console.log(err);
       });
   }
+
+  getAdverts() {
+    this.http.get(`${BASE_URL}/appdata/${APP_KEY}/adverts`).subscribe(adverts => {
+      this.adverts.next(adverts);
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
 
 }

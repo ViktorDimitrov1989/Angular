@@ -9,15 +9,16 @@ import { ProductService } from '../../../services/product/product.service';
 })
 export class HomePageComponent implements OnInit {
 
-  // private sub$ = new Subscription();
-  // private products: Object[];
+  private sub$ = new Subscription();
+  private adverts: Object[];
 
   constructor(private productService: ProductService) {
-    // this.productService.getProducts();
-    // this.sub$ = this.productService.products.subscribe(products => {
-    //   this.products = products;
-    // })
+    this.sub$ = this.productService.adverts.subscribe(adverts => {
+      this.adverts = adverts;
+      console.log(adverts);
+    })
 
+    this.productService.getAdverts();
   }
 
   ngOnInit() {
