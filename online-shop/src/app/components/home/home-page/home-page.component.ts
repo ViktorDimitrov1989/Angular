@@ -15,7 +15,6 @@ export class HomePageComponent implements OnInit {
   constructor(private productService: ProductService) {
     this.sub$ = this.productService.adverts.subscribe(adverts => {
       this.adverts = adverts;
-      console.log(adverts);
     })
 
     this.productService.getAdverts();
@@ -23,7 +22,6 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     
-    //console.log(this.products);
   }
 
 }

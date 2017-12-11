@@ -1,3 +1,4 @@
+import { ManageProductsPageComponent } from '../components/products/manage-products-page/manage-products-page.component';
 import { ProductsCartComponent } from '../components/products/products-cart/products-cart.component';
 import { ProductsListComponent } from '../components/products/products-list/products-list.component';
 import { AuthGuard } from './path-guards/auth.guard';
@@ -39,6 +40,11 @@ const routes: Routes = [
   {
     path: 'cart',
     component: ProductsCartComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'manageProducts',
+    component: ManageProductsPageComponent,
     canActivate: [AuthGuard]
   }
 
