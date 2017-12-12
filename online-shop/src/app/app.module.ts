@@ -42,6 +42,7 @@ import { AdvertListComponent } from './components/adverts/advert-list/advert-lis
 import { AdvertComponent } from './components/adverts/advert/advert.component';
 import { ManageProductsPageComponent } from './components/products/manage-products-page/manage-products-page.component';
 import { AddProductFormComponent } from './components/products/add-product-form/add-product-form.component';
+import { AdvertAddFormComponent } from './components/adverts/advert-add-form/advert-add-form.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AddProductFormComponent } from './components/products/add-product-form/
     AdvertListComponent,
     AdvertComponent,
     ManageProductsPageComponent,
-    AddProductFormComponent
+    AddProductFormComponent,
+    AdvertAddFormComponent
   ],
   imports: [
     AuthModule,

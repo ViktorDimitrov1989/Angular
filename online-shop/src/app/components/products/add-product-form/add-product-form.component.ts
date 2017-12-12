@@ -1,5 +1,6 @@
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../../services/product/product.service';
 
 @Component({
   selector: 'app-add-product-form',
@@ -14,7 +15,9 @@ export class AddProductFormComponent implements OnInit {
     "M",
     "L",
     "XL"];
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService) { }
 
   ngOnInit() {
 
@@ -33,7 +36,9 @@ export class AddProductFormComponent implements OnInit {
   }
   //[Validators.required, Validators.maxLength(30), Validators.minLength(3)]
   submitProduct(productForm) {
-
+    let product = productForm.value;
+    product.addedOn = Date.now();
+    this.productService.addProduct(productForm.value);
   }
 
   onChange(size: string, isChecked: boolean) {

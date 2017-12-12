@@ -55,6 +55,17 @@ export class ProductService {
       });
   }
 
+  addProduct(product) {
+    this.http.post(`${BASE_URL}/appdata/${APP_KEY}/products/`, product).subscribe(product => {
+      this.getProducts();
+      this.toastr.success("Product added!");
+      this.router.navigateByUrl("products");
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
   getAdverts() {
     this.http.get(`${BASE_URL}/appdata/${APP_KEY}/adverts`).subscribe(adverts => {
       this.adverts.next(adverts);

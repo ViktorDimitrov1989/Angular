@@ -68,7 +68,8 @@
     <div class="form-group text-center">
       <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Available</h4>
       <label class="custom-control custom-radio">
-        <input formControlName="isAvailable" id="radio1" name="isAvailable" type="radio" value={{true}} class="custom-control-input" checked="">
+        <input formControlName="isAvailable" id="radio1" name="isAvailable" type="radio" value={{true}} class="custom-control-input"
+          checked="">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">True</span>
       </label>
@@ -78,6 +79,9 @@
         <span class="custom-control-description">False</span>
       </label>
     </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-default">Add Product</button>
+    </div>
   </form>
 </div>
-<pre>Form values: {{productForm.value | json}}</pre>
+<!-- <pre>Form values: {{productForm.value | json}}</pre> -->
