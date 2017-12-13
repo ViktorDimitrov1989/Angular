@@ -10,6 +10,8 @@ import { ProductService } from '../../../services/product/product.service';
 export class AddProductFormComponent implements OnInit {
 
   public productForm: FormGroup;
+  public isAdvertFormShown: boolean;
+  public advertForm: FormGroup;
 
   private sizes = [
     "M",
@@ -17,9 +19,15 @@ export class AddProductFormComponent implements OnInit {
     "XL"];
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService) { }
+    private productService: ProductService) {
+    this.isAdvertFormShown = false;
+  }
 
   ngOnInit() {
+    this.advertForm = this.fb.group({
+      title: [''],
+      description: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]]
+    })
 
     this.productForm = this.fb.group({
       fit: [''],
@@ -35,10 +43,12 @@ export class AddProductFormComponent implements OnInit {
     })
   }
   //[Validators.required, Validators.maxLength(30), Validators.minLength(3)]
-  submitProduct(productForm) {
-    let product = productForm.value;
+  submitProduct(productForm, advertForm) {
+    let product: any = productForm.value;
+    let advert = advertForm.value;
     product.addedOn = Date.now();
-    this.productService.addProduct(productForm.value);
+    
+    this.productService.addProduct(product, advert);
   }
 
   onChange(size: string, isChecked: boolean) {
@@ -50,6 +60,10 @@ export class AddProductFormComponent implements OnInit {
       let index = sizesFormArray.controls.findIndex(x => x.value == size)
       sizesFormArray.removeAt(index);
     }
+  }
+
+  showAdvertForm(){
+    this.isAdvertFormShown = true;
   }
 
 }

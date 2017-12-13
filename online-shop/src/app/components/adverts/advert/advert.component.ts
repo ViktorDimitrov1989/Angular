@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +10,13 @@ export class AdvertComponent implements OnInit {
 
   @Input() advert: Object;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   viewAdvertProduct(){
-    //get productId as param and view product
+    this.router.navigateByUrl(`products/${this.advert['product_id']}`);
   }
 
 }

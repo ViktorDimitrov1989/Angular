@@ -4,18 +4,19 @@ import { Subject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { APP_KEY, APP_SECRET, BASE_URL } from './../constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AdvertService } from '../advert/advert.service';
 
 @Injectable()
 export class ProductService {
 
   public products: Subject<any> = new Subject();
   public focusedProduct: Subject<any> = new Subject();
-  public adverts: Subject<any> = new Subject();
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private advertService: AdvertService) { }
 
   getProducts() {
     this.http.get(`${BASE_URL}/appdata/${APP_KEY}/products`).subscribe(products => {
@@ -55,9 +56,14 @@ export class ProductService {
       });
   }
 
-  addProduct(product) {
+  addProduct(product, advert) {
     this.http.post(`${BASE_URL}/appdata/${APP_KEY}/products/`, product).subscribe(product => {
       this.getProducts();
+      advert['product_id'] = product['_id'];
+      if (advert.title.length() > 0) {
+        this.advertService.addAdvert(advert);
+      }
+
       this.toastr.success("Product added!");
       this.router.navigateByUrl("products");
     },
@@ -65,15 +71,5 @@ export class ProductService {
         console.log(err);
       });
   }
-
-  getAdverts() {
-    this.http.get(`${BASE_URL}/appdata/${APP_KEY}/adverts`).subscribe(adverts => {
-      this.adverts.next(adverts);
-    },
-      err => {
-        console.log(err);
-      });
-  }
-
 
 }
