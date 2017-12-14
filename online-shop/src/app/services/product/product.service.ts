@@ -57,13 +57,14 @@ export class ProductService {
   }
 
   addProduct(product, advert) {
+
     this.http.post(`${BASE_URL}/appdata/${APP_KEY}/products/`, product).subscribe(product => {
       this.getProducts();
       advert['product_id'] = product['_id'];
-      if (advert.title.length() > 0) {
+      console.log(advert)
+      if (advert.title.length > 0) {
         this.advertService.addAdvert(advert);
       }
-
       this.toastr.success("Product added!");
       this.router.navigateByUrl("products");
     },

@@ -26,7 +26,7 @@ export class AddProductFormComponent implements OnInit {
   ngOnInit() {
     this.advertForm = this.fb.group({
       title: [''],
-      description: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]]
+      description: ['', [Validators.required, Validators.maxLength(150), Validators.minLength(3)]]
     })
 
     this.productForm = this.fb.group({

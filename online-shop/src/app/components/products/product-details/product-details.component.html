@@ -9,7 +9,7 @@
     <img class="img-responsive img-center" style="height: 650px; width: 75%;" src={{product.picture}} alt="Card image">
 
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Fit: {{product.fit}}</li>
+      <li *ngIf="product.fit?.length>0" class="list-group-item">Fit: {{product.fit}}</li>
       <li class="list-group-item">Price: {{product.price | number : '1.2-2'}} lv.</li>
       <li class="list-group-item">
         <label for="sel1">Size:</label>

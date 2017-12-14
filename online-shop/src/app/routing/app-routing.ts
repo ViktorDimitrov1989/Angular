@@ -10,6 +10,7 @@ import { HomePageComponent } from './../components/home/home-page/home-page.comp
 import { LoginComponent } from '../components/auth/login/login.component';
 import { NotAuthGuard } from './path-guards/not-auth.guard';
 import { ProductDetailsComponent } from '../components/products/product-details/product-details.component';
+import { AdminGuard } from './path-guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
   {
     path:'manageProducts',
     component: ManageProductsPageComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AdminGuard]
   }
 
 ]

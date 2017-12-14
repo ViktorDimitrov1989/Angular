@@ -2,9 +2,9 @@
   <div class="row-md-6">
     <div class="card border-dark mb-3" style="max-width: 20rem;">
       <div class="container">
-        <span class="badge badge-pill badge-primary">{{product.status}}</span>
-        <span class="badge badge-pill badge-success">{{product.quality}} quality</span>
-        <span class="badge badge-pill badge-light">{{product.fit}} fit</span>
+        <span *ngIf="product.status?.length>0" class="badge badge-pill badge-primary">{{product.status}}</span>
+        <span *ngIf="product.quality?.length>0" class="badge badge-pill badge-success">{{product.quality}} quality</span>
+        <span *ngIf="product.fit?.length>0" class="badge badge-pill badge-light">{{product.fit}} fit</span>
       </div>
 
       <div class="card-body text-dark">
