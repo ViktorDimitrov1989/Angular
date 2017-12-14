@@ -1,0 +1,125 @@
+<div class="container">
+  <h2 class="text-center">Add Product</h2>
+  <form class="form-horizontal" [formGroup]='productForm' (ngSubmit)="submitProduct(productForm, advertForm)">
+    <div class="form-group has-success">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Fit</h4>
+      <input type="text" formControlName="fit" class="form-control" id="fit" class="form-control is-valid">
+      <!-- <div class="valid-feedback">Success! You've done it.</div> -->
+    </div>
+    <div class="form-group has-success">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Quality</h4>
+      <input type="text" formControlName="quality" class="form-control" id="quality" class="form-control is-valid">
+      <!-- <div class="valid-feedback">Success! You've done it.</div> -->
+    </div>
+    <div class="form-group has-success">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Picture URL</h4>
+      <input type="text" formControlName="picture" class="form-control" id="picture" class="form-control is-valid">
+      <!-- <div class="valid-feedback">Success! You've done it.</div> -->
+    </div>
+    <div class="form-group">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Price</h4>
+      <div class="form-group">
+        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+        <div class="input-group">
+          <input formControlName="price" type="number" class="form-control" id="price" placeholder="Amount">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <h4 class="control-label col-md-12 text-center" for="description">Description</h4>
+      <div class="form-group">
+        <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="form-group has-success">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Clothes type</h4>
+      <input type="text" formControlName="type" class="form-control" id="type" class="form-control is-valid">
+      <!-- <div class="valid-feedback">Success! You've done it.</div> -->
+    </div>
+    <div class="form-group has-success">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Brand</h4>
+      <input type="text" formControlName="brand" class="form-control" id="brand" class="form-control is-valid">
+      <!-- <div class="valid-feedback">Success! You've done it.</div> -->
+    </div>
+    <div class="form-group text-center">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Status</h4>
+      <label class="custom-control custom-radio">
+        <input formControlName="status" id="radio1" name="status" type="radio" value="Sale" class="custom-control-input" checked="">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Sale</span>
+      </label>
+      <label class="custom-control custom-radio">
+        <input formControlName="status" id="radio2" name="status" type="radio" value="Clearing" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Clearing</span>
+      </label>
+      <label class="custom-control custom-radio">
+        <input formControlName="status" id="radio2" name="status" type="radio" value="Best Price" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Best Price</span>
+      </label>
+    </div>
+    <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Sizes</h4>
+    <div *ngFor="let size of sizes">
+      <input type="checkbox" (change)="onChange(size, $event.target.checked)"> {{size}}
+    </div>
+    <div class="form-group text-center">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Available</h4>
+      <label class="custom-control custom-radio">
+        <input formControlName="isAvailable" id="radio1" name="isAvailable" type="radio" value={{true}} class="custom-control-input"
+          checked="">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">True</span>
+      </label>
+      <label class="custom-control custom-radio">
+        <input formControlName="isAvailable" id="radio2" name="isAvailable" type="radio" value={{false}} class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">False</span>
+      </label>
+    </div>
+    <div class="form-group text-center">
+      <h4 class="control-label col-md-12 text-center" for="inputSuccess1">Add Advert</h4>
+      <label class="custom-control custom-radio">
+        <input (change)="showAdvertForm()" value={{true}} id="radio1" name="isAdvertFormShown" type="radio" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <!-- <span class="custom-control-description">Add Advert</span> -->
+      </label>
+    </div>
+    <div [hidden]="!isAdvertFormShown">
+      <div class="container">
+        <h2 class="text-center">Add advert for this product</h2>
+        <form class="form-horizontal" action="/action_page.php" [formGroup]='advertForm'>
+          <div class="form-group">
+            <label class="control-label col-md-12 text-center" for="email">Title:</label>
+            <div class="form-group">
+              <input type="text" formControlName="title" class="form-control" id="title" />
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-12 text-center" for="email">Description:</label>
+              <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+              <div class="alert alert-danger" *ngIf="advertForm.get('description').hasError('required') && advertForm.get('description').touched">
+                Description is required
+              </div>
+              <div class="alert alert-danger" *ngIf="advertForm.get('description').hasError('minlength') && advertForm.get('description').touched">
+                Description min lenght is 2 symbols
+              </div>
+              <div class="alert alert-danger" *ngIf="advertForm.get('description').hasError('maxlength') && advertForm.get('description').touched">
+                Description maximum lenght is 30 symbols
+              </div>
+            </div>
+          </div>
+          <!-- <div class="form-group">
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="btn btn-default">Add Advert</button>
+                </div>
+              </div> -->
+        </form>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-default">Add Product</button>
+      <!-- <button (click)="showHideAdvertForm()" class="btn btn-outline-danger">Add Advert</button> -->
+    </div>
+  </form>
+</div>
+<!-- <pre>Form values: {{productForm.value | json}}</pre> -->

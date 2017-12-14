@@ -70,4 +70,8 @@ export class ProductsCartComponent implements OnInit {
     this.router.navigateByUrl('products');
   }
 
+  redirectToProducts(){
+    this.router.navigateByUrl('products');
+  }
+
 }

@@ -38,6 +38,10 @@ import { CommentFormComponent } from './components/comments/comment-form/comment
 import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
 import { CommentComponent } from './components/comments/comment/comment.component';
 import { CommentPageComponent } from './components/comments/comment-page/comment-page.component';
+import { AdvertListComponent } from './components/adverts/advert-list/advert-list.component';
+import { AdvertComponent } from './components/adverts/advert/advert.component';
+import { ManageProductsPageComponent } from './components/products/manage-products-page/manage-products-page.component';
+import { AddProductFormComponent } from './components/products/add-product-form/add-product-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { CommentPageComponent } from './components/comments/comment-page/comment
     CommentFormComponent,
     CommentListComponent,
     CommentComponent,
-    CommentPageComponent
+    CommentPageComponent,
+    AdvertListComponent,
+    AdvertComponent,
+    ManageProductsPageComponent,
+    AddProductFormComponent
   ],
   imports: [
     AuthModule,

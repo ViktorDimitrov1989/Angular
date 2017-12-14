@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../services/product/product.service';
+import { AdvertService } from '../../../services/advert/advert.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,20 +9,19 @@ import { ProductService } from '../../../services/product/product.service';
 })
 export class HomePageComponent implements OnInit {
 
-  // private sub$ = new Subscription();
-  // private products: Object[];
+  private sub$ = new Subscription();
+  private adverts: Object[];
 
-  constructor(private productService: ProductService) {
-    // this.productService.getProducts();
-    // this.sub$ = this.productService.products.subscribe(products => {
-    //   this.products = products;
-    // })
+  constructor(private advertService: AdvertService) {
+    this.sub$ = this.advertService.adverts.subscribe(adverts => {
+      this.adverts = adverts;
+    })
 
+    this.advertService.getAdverts();
   }
 
   ngOnInit() {
     
-    //console.log(this.products);
   }
 
 }

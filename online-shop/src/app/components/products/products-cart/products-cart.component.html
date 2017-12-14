@@ -30,10 +30,11 @@
   <h3 class="table-success text-center">
     <p>Overall price: {{overallPrice | number : '1.2-2'}}</p>
     <button (click)="purchaseProducts()" type="button" class="btn btn-primary">Make Purchase</button>
+    <button (click)="redirectToProducts()" type="button" class="btn btn-primary">Continue shopping</button>
   </h3>
 </div>
 
 <div class="jumbotron" *ngIf="overallPrice == 0">
-  <h1 class="text-center">Your don't have purchased products</h1>
+  <h1 class="text-center">You don't have purchased products</h1>
   <h4 class="text-center"> Enter the "Products" section to purchase. </h4>
 </div>
