@@ -6,13 +6,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { CommentService } from '../../../services/comment/comment.service';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   public product: any;
   public isCommentFormShowed: boolean;
@@ -61,5 +62,15 @@ export class ProductDetailsComponent implements OnInit {
     //this.commentService.getFocusedProductComments(this.product._id);
   }
 
+  ngOnDestroy(): void {
+    if(this.sub$){
+      this.sub$.unsubscribe();
+    }
+
+    if(this.currentUserSub$){
+      this.currentUserSub$.unsubscribe();
+    }
+
+  }
 
 }

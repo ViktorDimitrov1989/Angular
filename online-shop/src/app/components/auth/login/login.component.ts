@@ -1,13 +1,15 @@
 import { AuthService } from '../../../services/auth/auth.service';
 import { Subscription } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
   public loginUser;
   public submitted: boolean = false;
   public sub$: Subscription;
@@ -39,6 +41,12 @@ export class LoginComponent implements OnInit {
 
   submitForm(dataObj) {
     this.authService.loginUser(dataObj);
+  }
+
+  ngOnDestroy(): void {
+    if(this.sub$){
+      this.sub$.unsubscribe()
+    }
   }
 
 }

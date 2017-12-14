@@ -18,6 +18,7 @@ export class CommentService {
   addComment(comment) {
     this.http.post(`${BASE_URL}/appdata/${APP_KEY}/comments`, comment).subscribe(comment => {
       this.getFocusedProductComments(comment['productId']);
+      this.toastr.success("Comment added!");
     },
       err => {
         console.log(err);

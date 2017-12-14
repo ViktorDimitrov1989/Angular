@@ -4,13 +4,14 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { any } from 'codelyzer/util/function';
 import { ProductService } from '../../../services/product/product.service';
 import { Component, OnInit } from '@angular/core';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-comment-form',
   templateUrl: './comment-form.component.html',
   styleUrls: ['./comment-form.component.css'],
 })
-export class CommentFormComponent implements OnInit {
+export class CommentFormComponent implements OnInit,OnDestroy {
 
   public commentForm: FormGroup;
 
@@ -44,6 +45,12 @@ export class CommentFormComponent implements OnInit {
 
     this.commentsService.addComment(commentForm.value);
     this.commentForm.reset();
+  }
+
+  ngOnDestroy(): void {
+    if(this.sub$){
+      this.sub$.unsubscribe()
+    }
   }
 
 }

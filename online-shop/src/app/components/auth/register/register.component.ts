@@ -59,7 +59,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.sub$) {
       this.sub$.unsubscribe();
     }
-
   }
 
 }

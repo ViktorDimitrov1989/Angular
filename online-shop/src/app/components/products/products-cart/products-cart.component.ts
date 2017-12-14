@@ -3,6 +3,7 @@ import { UserService } from '../../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { NgForm } from '@angular/forms';
   templateUrl: './products-cart.component.html',
   styleUrls: ['./products-cart.component.css']
 })
-export class ProductsCartComponent implements OnInit {
+export class ProductsCartComponent implements OnInit, OnDestroy {
+
   public products: Object[];
   public overallPrice: number;
 
@@ -72,6 +74,12 @@ export class ProductsCartComponent implements OnInit {
 
   redirectToProducts(){
     this.router.navigateByUrl('products');
+  }
+
+  ngOnDestroy(): void {
+    if(this.sub$){
+      this.sub$.unsubscribe();
+    }
   }
 
 }
