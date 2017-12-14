@@ -1,4 +1,6 @@
 //Modules
+import { AdvertComponent } from './components/adverts/advert/advert.component';
+import { AdvertListComponent } from './components/adverts/advert-list/advert-list.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ServiceModule } from './services/services.module';
 import { AuthModule } from './modules/auth.module';
@@ -19,10 +21,6 @@ import { AppRoutingModule } from './routing/app-routing';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { MainComponent } from './components/main/main.component';
 
-//Services
-// import { UserService } from './services/user/user.service';
-// import { ProductService } from './services/product/product.service';
-
 //Interceptors
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
@@ -38,8 +36,7 @@ import { CommentFormComponent } from './components/comments/comment-form/comment
 import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
 import { CommentComponent } from './components/comments/comment/comment.component';
 import { CommentPageComponent } from './components/comments/comment-page/comment-page.component';
-import { AdvertListComponent } from './components/adverts/advert-list/advert-list.component';
-import { AdvertComponent } from './components/adverts/advert/advert.component';
+
 import { ManageProductsPageComponent } from './components/products/manage-products-page/manage-products-page.component';
 import { AddProductFormComponent } from './components/products/add-product-form/add-product-form.component';
 import { AdminGuard } from './routing/path-guards/admin.guard';
