@@ -1,6 +1,6 @@
 # OnlineShop
 
-OnlineShop is simple Angular2 project, developed for my SoftUni Angular2 course. It works with Kinvey backend server and 
+OnlineShop is simple Angular project, developed for my SoftUni Angular2 course. It works with Kinvey backend server and 
  offers functionality for shopping clothes online.
 
 ## Getting Started
